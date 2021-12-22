@@ -1,4 +1,4 @@
-package com.schiavone.honorsmobileapps.quizapp
+package com.schiavone.honorsmobileapps.quizapp_fragments
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

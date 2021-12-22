@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuizApp</string>
+    <string name="app_name">QuizApp_Fragments</string>
     <string name="question1">A platypus a semi-aquatic mammal</string>
     <string name="question2">A platypus has a so called "sixth sense" called electroreception</string>
     <string name="question3">Platypus are not venemous</string>
@@ -7,4 +7,6 @@
     <string name="question5">Platypus have small, jagged teeth that take place of their baby teeth in adulthood</string>
     <string name="toast1">Correct! Good Job!</string>
     <string name="toast2">HAHA YOU\'RE WRONG</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

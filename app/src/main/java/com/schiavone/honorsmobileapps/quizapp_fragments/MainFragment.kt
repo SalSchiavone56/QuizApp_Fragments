@@ -1,16 +1,14 @@
-package com.schiavone.honorsmobileapps.quizapp
+package com.schiavone.honorsmobileapps.quizapp_fragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import com.schiavone.honorsmobileapps.quizapp.databinding.ActivityMainBinding
+import com.schiavone.honorsmobileapps.quizapp_fragments.databinding.FragmentMainBinding
 
-const val QUESTION_NUMBER = "num_of_question_key"
-
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+class MainFragment : Fragment() {
 
     data class Question(val resourceId: Int, val answer: Boolean) {
     }
@@ -21,13 +19,17 @@ class MainActivity : AppCompatActivity() {
         Question(R.string.question2, true), Question(R.string.question3, false),
         Question(R.string.question4, true), Question(R.string.question5, false)
     )
+    private var _binding : FragmentMainBinding?=null
+    private val binding get() = _binding !!
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding=FragmentMainBinding.inflate(inflater,container,false)
+        val rootview=binding.root
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         if (savedInstanceState != null)
-            questionIndex = savedInstanceState.getInt(QUESTION_NUMBER)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+            questionIndex = savedInstanceState.getInt("question_number")
         updateQuestionText()
         binding.button.setOnClickListener { view ->
             checkAnswer(true)
@@ -41,11 +43,16 @@ class MainActivity : AppCompatActivity() {
         binding.questionText.setOnClickListener { view ->
             nextQuestion()
         }
+        return rootview
+    }
+    override fun onDestroy(){
+        super.onDestroy()
+        _binding=null
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putInt(QUESTION_NUMBER, questionIndex)
+        savedInstanceState.putInt("question_number", questionIndex)
     }
 
     fun nextQuestion() {
@@ -60,9 +67,10 @@ class MainActivity : AppCompatActivity() {
 
     fun checkAnswer(answer: Boolean) {
         if (questionList.get(questionIndex).answer == answer) {
-            Toast.makeText(this, R.string.toast1, Toast.LENGTH_SHORT).show()
-        } else Toast.makeText(this, R.string.toast2, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.toast1, Toast.LENGTH_SHORT).show()
+        } else Toast.makeText(activity, R.string.toast2, Toast.LENGTH_SHORT).show()
 
 
     }
+
 }

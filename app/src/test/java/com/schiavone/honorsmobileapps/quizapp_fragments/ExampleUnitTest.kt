@@ -1,4 +1,4 @@
-package com.schiavone.honorsmobileapps.quizapp
+package com.schiavone.honorsmobileapps.quizapp_fragments
 
 import org.junit.Test
 
